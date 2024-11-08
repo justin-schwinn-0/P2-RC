@@ -26,7 +26,7 @@ void MutexRc::init()
 {
 }
 
-std::string MutexRc::getCtrlStr(int ctrlMsgId)
+std::string MutexRc::getCtrlStr(const std::string& ctrlMsgId)
 {
-    return std::to_string(rNode.getUid()) + APP_DELIM + std::to_string(ctrlMsgId);
+    return std::to_string(rNode.getUid()) + APP_DELIM + ctrlMsgId;
 }

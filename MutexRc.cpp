@@ -113,7 +113,7 @@ void MutexRc::handleRequest(int uid,int ts)
     }
     else
     {
-        Utils::log("keep my key");
+        Utils::log("keep my key",uid);
         mOtherRequests[uid] = true;
     }
 }

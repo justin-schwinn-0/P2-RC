@@ -162,7 +162,7 @@ void runAlg(NodeInfo& ni)
 
     std::thread connectThrd(&Node::connectAll, &ni.n);
 
-    ni.n.acceptNeighbors();
+    //ni.n.acceptNeighbors();
     connectThrd.join();
 
     if(ni.n.getUid() == 0)

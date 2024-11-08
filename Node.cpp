@@ -254,7 +254,7 @@ void Node::recvMsg(int fd)
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;
         //std::cout << "             Flags: " << flags << std::endl;
-        if (flags & MSG_NOTIFICATION) 
+        if (flags & (MSG_NOTIFICATION >> 8)) 
         {
             union sctp_notification *notif = (union sctp_notification *)buf;
 

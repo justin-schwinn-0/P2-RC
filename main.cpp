@@ -160,9 +160,10 @@ void runAlg(NodeInfo& ni)
 
     ni.n.setHandler(std::bind(&MutexRc::handleMsg,mrc,std::placeholders::_1));
 
-    ni.n.connectAll();
+    std::thread connectThrd(&Node::connectAll, &ni.n);
 
     ni.n.acceptNeighbors();
+    connectThrd.join();
 
     if(ni.n.getUid() == 0)
     {

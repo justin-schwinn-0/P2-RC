@@ -33,6 +33,8 @@ private:
 
     std::map<int, bool> mKeys;
 
+    int mTime = 0;
+
 };
 
 #endif

@@ -156,7 +156,7 @@ void MutexRc::releaseKeys()
     {
         if(it.second)
         {
-            giveKey(uid);
+            giveKey(it.first);
         }
     }
     requestTimer();

@@ -89,6 +89,7 @@ void MutexRc::tryEnterCs()
         //wait time
         Utils::log("EXIT CS");
         //release keys
+        Utils::log("should release keys");
     }
 }
 

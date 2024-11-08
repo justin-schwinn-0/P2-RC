@@ -30,13 +30,13 @@ void MutexRc::request()
 {
     for(auto it : mKeys)
     {
-        if(it->second)
+        if(it.second)
         {
-            Utils::log("Have key",it->first);
+            Utils::log("Have key",it.first);
         }
         else
         {
-            Utils::log("Dont have Key",it->first);
+            Utils::log("Dont have Key",it.first);
         }
     }
 }

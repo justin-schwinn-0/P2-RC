@@ -17,6 +17,5 @@ void MutexRc::handleMsg(std::string msg)
 
 void MutexRc::init()
 {
-    createTree();
-    Utils::log("create tree");
+
 }

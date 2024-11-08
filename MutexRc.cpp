@@ -1,5 +1,7 @@
 #include "MutexRc.h"
 
+#include <thread>
+
 MutexRc::MutexRc(NodeInfo& ni):
     rNi(ni),
     rNode(ni.n)

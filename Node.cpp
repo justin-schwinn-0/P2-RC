@@ -247,20 +247,12 @@ void Node::recvMsg(int fd)
 
     if(in > 0)
     {
-        Utils::log("                        flags:",flags, MSG_NOTIFICATION);
         std::string strMsg(buf);
-        Utils::log("                          got:", strMsg);
+        //Utils::log("                          got:", strMsg);
         //std::cout << "             stream : " << sndrcvinfo.sinfo_stream << std::endl;
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;
         //std::cout << "             Flags: " << flags << std::endl;
-        if (flags & (MSG_NOTIFICATION >> 8)) 
-        {
-            union sctp_notification *notif = (union sctp_notification *)buf;
-
-            Utils::log("notif header",notif->sn_header.sn_type);
-        }
-
         auto splits = Utils::split(strMsg,MSG_DELIM);
         for(std::string str : splits)
         {

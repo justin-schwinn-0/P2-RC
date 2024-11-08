@@ -173,7 +173,7 @@ void runAlg(NodeInfo& ni)
 
     mrc.request();
 
-    std::thread releaseThrd(&Node::releaseMessagesThread, &ni.n,50);
+    std::thread releaseThrd(&Node::releaseMessagesThread, &ni.n,175);
     releaseThrd.detach();
 
     ni.n.listenToNeighbors();

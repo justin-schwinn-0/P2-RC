@@ -32,15 +32,13 @@ public:
 
     void releaseKeys();
 
-    void setCsLeave(std::function<void(NodeInfo&)> fun)
-    { csLeave = fun;}
-
     bool hasRequest()
     {   return mRequestTime != INT_MAX; }
 
     std::string getCtrlStr(const int ctrlMsgId);
 
 private:
+    NodeInfo& rNi;
     Node& rNode;
 
     std::map<int, bool> mKeys;
@@ -50,8 +48,6 @@ private:
     int mRequestTime = INT_MAX;
 
     std::map<int, bool> mOtherRequests;
-
-    std::function<void(NodeInfo&)> csLeave;
 };
 
 #endif

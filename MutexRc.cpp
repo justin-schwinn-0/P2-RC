@@ -1,6 +1,7 @@
 #include "MutexRc.h"
 
 MutexRc::MutexRc(NodeInfo& ni):
+    rNi(ni),
     rNode(ni.n)
 {
     auto neighbors = rNode.getConnectedUids();
@@ -140,7 +141,19 @@ void MutexRc::releaseKeys()
 {
     Utils::log("Gives keys to who needs it");
     mRequestTime = INT_MAX;
-    csLeave();
+}
+
+void MutexRc::requestTimer()
+{
+    auto timerLambda = [&]()
+    {   
+        std::this_thread::sleep_for(std::chrono::milliseconds(rNi.interRequestDelay));
+        request();
+    };
+
+    std::thread timerThrd(timerLambda);
+    timerThrd.detach();
+    
 }
 
 std::string MutexRc::getCtrlStr(const int ctrlMsgId)

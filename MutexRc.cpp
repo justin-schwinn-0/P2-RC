@@ -188,8 +188,11 @@ void MutexRc::requestTimer()
     auto timerLambda = [&]()
     {   
         std::this_thread::sleep_for(std::chrono::milliseconds(rNi.interRequestDelay));
+        Utils::log("made request! ==============");
         request();
     };
+
+    Utils::log("Released Keys! ==============");
 
     if(mTotalRequests < rNi.totalRequests)
     {

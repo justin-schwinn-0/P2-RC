@@ -168,6 +168,10 @@ void MutexRc::requestTimer()
         std::thread timerThrd(timerLambda);
         timerThrd.detach();
     }
+    else
+    {
+        Utils::log("Done! handled all requests!");
+    }
 }
 
 std::string MutexRc::getCtrlStr(const int ctrlMsgId)

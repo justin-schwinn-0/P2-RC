@@ -28,7 +28,7 @@ void MutexRc::handleMsg(std::string msg)
         int msgId = Utils::strToInt(splits[1]); 
         int timeStamp = Utils::strToInt(splits[2]); 
 
-        mtime = std::max(mTime+1,timeStamp);
+        mTime = std::max(mTime+1,timeStamp);
 
         switch(msgId)
         {

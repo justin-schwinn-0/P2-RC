@@ -156,7 +156,7 @@ void runAlg(NodeInfo& ni)
     ni.n.print();
     ni.n.openSocket();
 
-    MutexRc mrc;
+    MutexRc mrc(ni);
 
     ni.n.setHandler(std::bind(&MutexRc::handleMessage,mrc,std::placeholders::_1));
 

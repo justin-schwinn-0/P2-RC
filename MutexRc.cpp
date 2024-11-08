@@ -51,16 +51,14 @@ void MutexRc::handleMsg(std::string msg)
 
 void MutexRc::init()
 {
-    request();
+    //request();
 }
 
 void MutexRc::request()
 {
     Utils::printVectorPair(mKeys);
     bool needsKeys = false;
-    Utils::log("make req",mRequestTime);
     mRequestTime = mTime;
-    Utils::log("make req",mRequestTime);
     for(auto it : mKeys)
     {
         if(!it.second)
@@ -86,7 +84,6 @@ void MutexRc::giveKey(int uid)
 
 void MutexRc::handleRequest(int uid,int ts)
 {
-    Utils::log("handling request",mRequestTime);
     if(!hasRequest())
     {
         giveKey(uid);
@@ -117,6 +114,10 @@ void MutexRc::handleRequest(int uid,int ts)
 void MutexRc::handleGive(int uid, int ts)
 {
     Utils::log("was given key!", uid);
+
+    mKeys[uid] = true;
+
+    tryEnterCs();
 }
 
 void MutexRc::tryEnterCs()

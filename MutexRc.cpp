@@ -24,7 +24,7 @@ void MutexRc::handleMsg(std::string msg)
     if(splits.size() == 3)
     {
         int uid = Utils::strToInt(splits[0]);
-        std::sttring msgId = splits[1]; 
+        std::string msgId = splits[1]; 
         int timeStamp = Utils::strToInt(splits[2]); 
 
         switch(msgId)

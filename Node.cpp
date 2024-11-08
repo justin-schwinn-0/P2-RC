@@ -36,7 +36,7 @@ void Node::openSocket()
     init.sinit_max_instreams = 1;
     init.sinit_max_attempts = 4;
 
-    mListenFd = socket(AF_INET, SOCK_SEQPACKET, IPPROTO_SCTP);
+    mListenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
 
     if(mListenFd < 0)
     {
@@ -209,7 +209,7 @@ void Node::releaseMessages()
     }
 }
 
-/*void Node::listenToNeighbors()
+void Node::listenToNeighbors()
 {
     while(!finishedAlg )
     {
@@ -221,8 +221,8 @@ void Node::releaseMessages()
             }
         }
     }
-}*/
-void Node::listenToNeighbors()
+}
+/*void Node::listenToNeighbors()
 {
     while(!finishedAlg )
     {
@@ -232,7 +232,7 @@ void Node::listenToNeighbors()
             recvMsg(mListenFd); 
         }
     }
-}
+}*/
 
 void Node::recvMsg(int fd)
 {

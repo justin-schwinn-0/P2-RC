@@ -38,9 +38,7 @@ void Connection::sendMsgNow(std::string msg)
     do
     {
         //std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        Utils::log("Try send",msg); 
         int ret = sctp_sendmsg(mCon,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,10,MSG_DONTWAIT);
-        Utils::log("Tried send"); 
 
         if(ret < 0)
         {
@@ -67,7 +65,7 @@ void Connection::makeConnection()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
 
-    int sd = socket(AF_INET, SOCK_SEQPACKET, IPPROTO_SCTP);
+    int sd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(sd < 0)
     {
         Utils::log( "couldn't make SCTP socket!" ); 
@@ -90,12 +88,6 @@ void Connection::makeConnection()
     while(ret != 0 );
 
     mCon = sd;
-    int bufferSize = 512000; 
-    setsockopt(mCon, SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(bufferSize));
-
-    int flags = fcntl(mCon, F_GETFL, 0);
-    fcntl(mCon, F_SETFL, flags | O_NONBLOCK);
-
 
     Utils::log("connection with",hostname,"fd:",sd);
 }

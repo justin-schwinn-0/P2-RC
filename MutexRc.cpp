@@ -93,6 +93,19 @@ void MutexRc::giveKey(int uid)
     }
 }
 
+void MutexRc::deferKey(int uid)
+{
+    if(mKeys[uid])
+    {
+        mKeys[uid] = false;
+        rNode.sendTo(uid,getCtrlStr(DEFER));
+    }
+    else
+    {
+        Utils::log("Cannot defer key we dont have!");
+    }
+}
+
 void MutexRc::handleRequest(int uid,int ts)
 {
     if(!hasRequest())
@@ -120,6 +133,17 @@ void MutexRc::handleGive(int uid, int ts)
 
     mKeys[uid] = true;
     Utils::printVectorPair(mKeys);
+
+    tryEnterCs();
+}
+
+void MutexRc::handleDefer(int uid, int ts)
+{
+    Utils::log("was given key!", uid);
+
+    mKeys[uid] = true;
+    Utils::printVectorPair(mKeys);
+    mOtherRequests[uid] = true;
 
     tryEnterCs();
 }

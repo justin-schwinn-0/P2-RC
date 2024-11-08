@@ -10,6 +10,7 @@
 
 const int REQUEST = 1001;
 const int GIVE = 1002;
+const int DEFER = 1003;
 
 
 class MutexRc
@@ -27,6 +28,9 @@ public:
 
     void giveKey(int uid);
     void handleGive(int uid, int ts);
+
+    void deferKey(int uid);
+    void handleDefer(int uid, int ts);
 
     void tryEnterCs();
 

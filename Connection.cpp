@@ -29,7 +29,6 @@ Connection::~Connection()
 
 void Connection::sendMsgNow(std::string msg)
 {
-    Utils::log("Try send",msg); 
     if(mCon < 0)
     {
         Utils::log("we aren't connected to ",hostname);
@@ -39,7 +38,9 @@ void Connection::sendMsgNow(std::string msg)
     do
     {
         //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        Utils::log("Try send",msg); 
         int ret = sctp_sendmsg(mCon,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,10,0);
+        Utils::log("Tried send"); 
 
         if(ret < 0)
         {

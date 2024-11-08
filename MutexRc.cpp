@@ -106,7 +106,7 @@ void MutexRc::handleRequest(int uid,int ts)
     }
     else
     {
-        //Utils::log("keep my key");
+        Utils::log("keep my key");
     }
 }
 
@@ -133,9 +133,8 @@ void MutexRc::tryEnterCs()
     if(canEnter)
     {
         Utils::log("ENTER CS");
-        //wait time
+        std::this_thread::sleep_for(std::chrono::milliseconds(rNi.execTime));
         Utils::log("EXIT CS");
-        //release keys
         releaseKeys();
     }
 }

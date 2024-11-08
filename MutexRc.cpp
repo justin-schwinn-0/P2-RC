@@ -154,6 +154,10 @@ void MutexRc::handleDefer(int uid, int ts)
 
 void MutexRc::tryEnterCs()
 {
+    if(!hasRequest())
+    {
+        return;
+    }
     for(auto it : mKeys)
     {
         if(!it.second)

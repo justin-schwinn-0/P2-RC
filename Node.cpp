@@ -254,19 +254,33 @@ void Node::recvMsg(int fd)
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;
         //std::cout << "             Flags: " << flags << std::endl;
-        Utils::log("Received SCTP notification");
-        struct sctp_notification *notif = (struct sctp_notification *)buf;
+        if (msg_flags & MSG_NOTIFICATION) {
+        std::cout << "Received SCTP notification" << std::endl;
+        struct sctp_notification *notif = (struct sctp_notification *)buffer;
+
         switch (notif->sn_header.sn_type) {
-            case SCTP_ASSOC_CHANGE:
-                Utils::log("Association change event");
+            case SCTP_ASSOC_CHANGE: {
+                struct sctp_assoc_change *assoc_change = &notif->sn_assoc_change;
+                std::cout << "Association change event, state: "
+                          << assoc_change->sac_state << std::endl;
                 break;
-            case SCTP_PEER_ADDR_CHANGE:
-                Utils::log("Peer address change event");
+            }
+            case SCTP_PEER_ADDR_CHANGE: {
+                struct sctp_paddr_change *paddr_change = &notif->sn_paddr_change;
+                std::cout << "Peer address change event, state: "
+                          << paddr_change->spc_state << std::endl;
                 break;
-            // Handle other notification types as needed
+            }
+            // Add more cases for other notification types if needed
             default:
-                Utils::log("Other SCTP notification");
+                std::cout << "Other SCTP notification type: " 
+                          << notif->sn_header.sn_type << std::endl;
+                break;
         }
+    } else {
+        std::cout << "Received regular SCTP message of length " << ret << std::endl;
+        // Process the received message as application data
+    }
         auto splits = Utils::split(strMsg,MSG_DELIM);
         for(std::string str : splits)
         {

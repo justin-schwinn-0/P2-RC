@@ -254,7 +254,7 @@ void Node::recvMsg(int fd)
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;
         //std::cout << "             Flags: " << flags << std::endl;
-        if (msg_flags & MSG_NOTIFICATION) {
+        if (flags & MSG_NOTIFICATION) {
         std::cout << "Received SCTP notification" << std::endl;
         struct sctp_notification *notif = (struct sctp_notification *)buffer;
 

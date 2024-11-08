@@ -80,6 +80,10 @@ void MutexRc::handleRequest(int uid,int ts)
     {
         Utils::log("Will defer");
     }
+    else
+    {
+        Utils::log("it will wait");
+    }
 }
 
 void MutexRc::tryEnterCs()

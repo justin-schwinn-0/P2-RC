@@ -22,7 +22,7 @@ MutexRc::~MutexRc()
 
 void MutexRc::handleMsg(std::string msg)
 {
-    Utils::log("got message:",msg);
+    //Utils::log("got message:",msg);
     auto splits = Utils::split(msg, APP_DELIM);
 
     if(splits.size() == 3)
@@ -53,7 +53,7 @@ void MutexRc::handleMsg(std::string msg)
     {
         Utils::log("something went wrong with the message");
     }
-    Utils::printVectorPair(mKeys);
+    //Utils::printVectorPair(mKeys);
 }
 
 void MutexRc::init()

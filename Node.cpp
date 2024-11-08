@@ -254,33 +254,13 @@ void Node::recvMsg(int fd)
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;
         //std::cout << "             Flags: " << flags << std::endl;
-        if (flags & MSG_NOTIFICATION) {
-        std::cout << "Received SCTP notification" << std::endl;
-        union sctp_notification *notif = (union sctp_notification *)buf;
+        if (flags & MSG_NOTIFICATION) 
+        {
+            union sctp_notification *notif = (union sctp_notification *)buf;
 
-        switch (notif->sn_header.sn_type) {
-            case SCTP_ASSOC_CHANGE: {
-                struct sctp_assoc_change *assoc_change = &notif->sn_assoc_change;
-                std::cout << "Association change event, state: "
-                          << assoc_change->sac_state << std::endl;
-                break;
-            }
-            case SCTP_PEER_ADDR_CHANGE: {
-                struct sctp_paddr_change *paddr_change = &notif->sn_paddr_change;
-                std::cout << "Peer address change event, state: "
-                          << paddr_change->spc_state << std::endl;
-                break;
-            }
-            // Add more cases for other notification types if needed
-            default:
-                std::cout << "Other SCTP notification type: " 
-                          << notif->sn_header.sn_type << std::endl;
-                break;
+            Utils::log("notif header",notif->sn_header.sn_type)
         }
-    } else {
-        std::cout << "Received regular SCTP message of length " << in << std::endl;
-        // Process the received message as application data
-    }
+
         auto splits = Utils::split(strMsg,MSG_DELIM);
         for(std::string str : splits)
         {

@@ -105,7 +105,7 @@ void MutexRc::handleRequest(int uid,int ts)
     
     if(ts < mRequestTime)
     {
-        //Utils::log("Other Request has priority");
+        Utils::log("Other Request has priority");
     }
     else if( ts == mRequestTime && uid < rNode.getUid() )
     {

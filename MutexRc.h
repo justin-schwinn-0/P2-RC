@@ -32,6 +32,9 @@ public:
 
     void releaseKeys();
 
+    void setCsLeave(std::function<void(NodeInfo&)> fun)
+    { csLeave = fun;}
+
     bool hasRequest()
     {   return mRequestTime != INT_MAX; }
 
@@ -48,6 +51,7 @@ private:
 
     std::map<int, bool> mOtherRequests;
 
+    std::function<void(NodeInfo&)> csLeave;
 };
 
 #endif

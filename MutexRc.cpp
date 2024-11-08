@@ -140,6 +140,7 @@ void MutexRc::releaseKeys()
 {
     Utils::log("Gives keys to who needs it");
     mRequestTime = INT_MAX;
+    csLeave();
 }
 
 std::string MutexRc::getCtrlStr(const int ctrlMsgId)

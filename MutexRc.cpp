@@ -74,7 +74,7 @@ void MutexRc::request()
 }
 void MutexRc::handleRequest(int uid,int ts)
 {
-    Utils::log("handling request");
+    Utils::log("handling request",mRequestTime);
     
     if(ts < mRequestTime)
     {
@@ -114,13 +114,14 @@ void MutexRc::tryEnterCs()
         //wait time
         Utils::log("EXIT CS");
         //release keys
-        Utils::log("should release keys");
+        releaseKeys();
     }
 }
 
 void releaseKeys()
 {
     Utils::log("Gives keys to who needs it");
+    mRequestTime = INT_MAX;
 }
 
 std::string MutexRc::getCtrlStr(const int ctrlMsgId)

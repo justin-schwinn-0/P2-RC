@@ -76,7 +76,7 @@ void Connection::makeConnection()
     int ret;
     do
     {
-        sleep(2);
+        //sleep(2);
         ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
 
         if(ret < 0)

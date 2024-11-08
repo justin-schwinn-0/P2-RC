@@ -10,7 +10,6 @@ MutexRc::MutexRc(NodeInfo& ni):
         //Lower UID gets the key
         mKeys[uid] = rNode.getUid() < uid;
     }
-    Utils::printVectorPair(mKeys);
 }
 
 MutexRc::~MutexRc()
@@ -29,15 +28,13 @@ void MutexRc::init()
 
 void MutexRc::request()
 {
+    Utils::printVectorPair(mKeys);
+    bool needsKeys = false;
     for(auto it : mKeys)
     {
-        if(it.second)
+        if(!it.second)
         {
-            Utils::log("Have key",it.first);
-        }
-        else
-        {
-            Utils::log("Dont have Key",it.first);
+            Utils::log("will ask for key",it.first);
         }
     }
 }

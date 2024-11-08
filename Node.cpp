@@ -258,7 +258,7 @@ void Node::recvMsg(int fd)
         {
             union sctp_notification *notif = (union sctp_notification *)buf;
 
-            Utils::log("notif header",notif->sn_header.sn_type)
+            Utils::log("notif header",notif->sn_header.sn_type);
         }
 
         auto splits = Utils::split(strMsg,MSG_DELIM);

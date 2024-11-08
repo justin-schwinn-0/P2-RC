@@ -144,6 +144,7 @@ void MutexRc::releaseKeys()
 {
     Utils::log("Gives keys to who needs it");
     mRequestTime = INT_MAX;
+    requestTimer();
 }
 
 void MutexRc::requestTimer()

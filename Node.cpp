@@ -36,7 +36,7 @@ void Node::openSocket()
     init.sinit_max_instreams = 1;
     init.sinit_max_attempts = 4;
 
-    mListenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    mListenFd = socket(AF_INET, SOCK_SEQPACKET, IPPROTO_SCTP);
 
     if(mListenFd < 0)
     {

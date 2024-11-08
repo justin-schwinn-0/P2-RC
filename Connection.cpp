@@ -65,7 +65,7 @@ void Connection::makeConnection()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
 
-    int sd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    int sd = socket(AF_INET, SOCK_SEQPACKET, IPPROTO_SCTP);
     if(sd < 0)
     {
         Utils::log( "couldn't make SCTP socket!" ); 

@@ -7,8 +7,8 @@
 #include "Node.h"
 #include "Utils.h"
 
-const std::string REQUEST = "REQ"
-const std::string GIVE = "GIVE"
+const std::string REQUEST = "REQ";
+const std::string GIVE = "GIVE";
 
 
 class MutexRc

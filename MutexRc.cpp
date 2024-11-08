@@ -53,7 +53,7 @@ void MutexRc::handleMsg(std::string msg)
     {
         Utils::log("something went wrong with the message");
     }
-    //Utils::printVectorPair(mKeys);
+    Utils::printVectorPair(mKeys);
 }
 
 void MutexRc::init()

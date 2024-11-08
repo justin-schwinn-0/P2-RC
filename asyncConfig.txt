@@ -1,4 +1,8 @@
-4 20 10 8
+4 20 10 3
+#0 localhost 21234
+#1 localhost 21235
+#2 localhost 25236
+#3 localhost 21237
 0 dc32 21234
 1 dc33 21233
 2 dc34 25233

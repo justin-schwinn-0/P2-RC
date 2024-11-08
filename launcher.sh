@@ -6,7 +6,7 @@ netid=jts200006
 # Your main project name 
 PROG=P2-RC
 
-CONFIGNAME="asyncConfig.txt"
+CONFIGNAME="${1}"
 
 # Root directory of your project on the remote location
 PROJDIR=/home/010/j/jt/jts200006/cs6378/${PROG}

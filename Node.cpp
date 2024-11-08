@@ -247,7 +247,7 @@ void Node::recvMsg(int fd)
 
     if(in > 0)
     {
-        Utils::log("                        flags:",flags);
+        Utils::log("                        flags:",flags, MSG_NOTIFICATION);
         std::string strMsg(buf);
         Utils::log("                          got:", strMsg);
         //std::cout << "             stream : " << sndrcvinfo.sinfo_stream << std::endl;

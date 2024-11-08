@@ -69,7 +69,7 @@ void MutexRc::request()
     {
         if(!it.second)
         {
-            Utils::log("will ask for key",it.first);
+            Utils::log("will ask for key",it.first,mTime);
             needsKeys=true;
             rNode.sendTo(it.first,getCtrlStr(REQUEST));
         }

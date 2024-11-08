@@ -90,11 +90,11 @@ void MutexRc::handleRequest(int uid,int ts)
         return;
     }
 
-    Utils::log("handle request");
+    //Utils::log("handle request");
     
     if(ts < mRequestTime)
     {
-        Utils::log("Other Request has priority");
+        //Utils::log("Other Request has priority");
     }
     else if( ts == mRequestTime && uid < rNode.getUid() )
     {
@@ -102,13 +102,13 @@ void MutexRc::handleRequest(int uid,int ts)
     }
     else
     {
-        Utils::log("keep my key");
+        //Utils::log("keep my key");
     }
 }
 
 void MutexRc::handleGive(int uid, int ts)
 {
-    Utils::log("was given key!", uid);
+    //Utils::log("was given key!", uid);
 
     mKeys[uid] = true;
 

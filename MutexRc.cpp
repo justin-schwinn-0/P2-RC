@@ -94,20 +94,13 @@ void MutexRc::handleRequest(int uid,int ts)
     {
         Utils::log("Other Request has priority");
     }
-    else if( ts == mRequestTime )
+    else if( ts == mRequestTime && uid < rNode.getUid() )
     {
-        if(uid < rNode.getUid())
-        {
-            Utils::log("tie break: lost");
-        }
-        else
-        {
-            Utils::log("tie break: won");
-        }
+        Utils::log("deferMyKey");
     }
     else
     {
-        Utils::log("it will wait");
+        Utils::log("keep my key");
     }
 }
 

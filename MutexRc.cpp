@@ -101,7 +101,7 @@ void MutexRc::handleRequest(int uid,int ts)
         return;
     }
 
-    //Utils::log("handle request");
+    Utils::log("handle request",uid,ts,mRequestTime);
     
     if(ts < mRequestTime)
     {

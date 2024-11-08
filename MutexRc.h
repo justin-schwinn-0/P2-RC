@@ -7,8 +7,8 @@
 #include "Node.h"
 #include "Utils.h"
 
-const std::string REQUEST = "REQ";
-const std::string GIVE = "GIVE";
+const int REQUEST = 1001;
+const int GIVE = 1002;
 
 
 class MutexRc
@@ -26,7 +26,7 @@ public:
 
     void tryEnterCs();
 
-    std::string getCtrlStr(const std::string& ctrlMsgId);
+    std::string getCtrlStr(const int ctrlMsgId);
 
 private:
     Node& rNode;

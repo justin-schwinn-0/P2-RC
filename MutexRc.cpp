@@ -24,7 +24,7 @@ void MutexRc::handleMsg(std::string msg)
     if(splits.size() == 3)
     {
         int uid = Utils::strToInt(splits[0]);
-        std::string msgId = splits[1]; 
+        int msgId = Utils::strToInt(splits[1]); 
         int timeStamp = Utils::strToInt(splits[2]); 
 
         switch(msgId)
@@ -92,7 +92,7 @@ void MutexRc::tryEnterCs()
     }
 }
 
-std::string MutexRc::getCtrlStr(const std::string& ctrlMsgId)
+std::string MutexRc::getCtrlStr(const int ctrlMsgId)
 {
-    return std::to_string(rNode.getUid()) + APP_DELIM + ctrlMsgId;
+    return std::to_string(rNode.getUid()) + APP_DELIM + std::to_string(ctrlMsgId);
 }

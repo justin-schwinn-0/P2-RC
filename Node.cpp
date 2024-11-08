@@ -256,7 +256,7 @@ void Node::recvMsg(int fd)
         //std::cout << "             Flags: " << flags << std::endl;
         if (flags & MSG_NOTIFICATION) {
         std::cout << "Received SCTP notification" << std::endl;
-        union sctp_notification *notif = (struct sctp_notification *)buf;
+        union sctp_notification *notif = (union sctp_notification *)buf;
 
         switch (notif->sn_header.sn_type) {
             case SCTP_ASSOC_CHANGE: {

@@ -32,6 +32,8 @@ public:
 
     void releaseKeys();
 
+    void requestTimer();
+
     bool hasRequest()
     {   return mRequestTime != INT_MAX; }
 

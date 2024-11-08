@@ -98,6 +98,21 @@ void Node::openSocket()
         return;
     }
 
+    int sendBufferSize = 512000;  // 500 KB
+    int receiveBufferSize = 512000;  // 500 KB
+
+    if (setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, &sendBufferSize, sizeof(sendBufferSize)) == -1) 
+    {
+        Utils::log("coudn't set socket option PEER_ADDR_PARAMS: " , strerror(errno));
+        return;
+    }
+
+    if (setsockopt(sockfd, SOL_SOCKET, SO_RCVBUF, &receiveBufferSize, sizeof(receiveBufferSize)) == -1) 
+    {
+        Utils::log("coudn't set socket option PEER_ADDR_PARAMS: " , strerror(errno));
+        return;
+    }
+
     ret = listen(mListenFd, init.sinit_max_instreams);
     if(ret < 0)
     {

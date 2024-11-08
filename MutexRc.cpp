@@ -1,5 +1,4 @@
 #include "MutexRc.h"
-#include <climits>
 
 MutexRc::MutexRc(NodeInfo& ni):
     rNode(ni.n)

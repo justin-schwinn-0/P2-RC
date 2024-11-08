@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <climits>
 
 #include "Node.h"
 #include "Utils.h"
@@ -37,7 +38,7 @@ private:
 
     int mTime = 0;
 
-    int mRequestTime = -1;
+    int mRequestTime = INT_MAX;
 
     std::map<int, bool> mOtherRequests;
 

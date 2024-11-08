@@ -93,6 +93,10 @@ void Connection::makeConnection()
     int bufferSize = 512000; 
     setsockopt(mCon, SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(bufferSize));
 
+    int flags = fcntl(mCon, F_GETFL, 0);
+    fcntl(mCon, F_SETFL, flags | O_NONBLOCK);
+
+
     Utils::log("connection with",hostname,"fd:",sd);
 }
 

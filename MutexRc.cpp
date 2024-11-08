@@ -35,6 +35,9 @@ void MutexRc::handleMsg(std::string msg)
             case REQUEST:
                 handleRequest(uid,timeStamp);
                 break;
+            case GIVE:
+                handleGive(uid,timeStamp);
+                break;
             default:
                 Utils::log("Unknown message!",msgId);
                 break;

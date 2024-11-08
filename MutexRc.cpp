@@ -180,6 +180,7 @@ void MutexRc::releaseKeys()
             giveKey(it.first);
         }
     }
+    Utils::printVectorPair(mKeys);
     requestTimer();
 }
 

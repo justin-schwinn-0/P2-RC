@@ -110,6 +110,7 @@ void Node::openSocket()
 
 void Node::acceptNeighbors()
 {
+    Utils::log("accepting");
     if(mListenFd < 0)
     {
         Utils::log( "bad listener!" , mListenFd );

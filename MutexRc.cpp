@@ -111,7 +111,7 @@ void MutexRc::handleRequest(int uid,int ts)
     }
 }
 
-void MutexRc::handleGive(int uid, int ts);
+void MutexRc::handleGive(int uid, int ts)
 {
     Utils::log("was given key!", uid);
 }

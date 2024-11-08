@@ -22,6 +22,9 @@ public:
     void init();
 
     void request();
+    void handleRequest(int uid,int ts);
+
+    void tryEnterCs();
 
     std::string getCtrlStr(const std::string& ctrlMsgId);
 

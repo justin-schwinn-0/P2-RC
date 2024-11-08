@@ -19,6 +19,28 @@ MutexRc::~MutexRc()
 void MutexRc::handleMsg(std::string msg)
 {
     Utils::log("got message:",msg);
+    auto splits = Utils::split(msg, APP_DELIM);
+
+    if(splits.size() == 3)
+    {
+        int uid = Utils::strToInt(splits[0]);
+        int msgId = Utils::strToInt(splits[1]); 
+        int timeStamp = Utils::strToInt(splits[2]); 
+
+        switch(msgId)
+        {
+            case REQUEST:
+                handleRequest(uid,timeStamp);
+                break;
+            default:
+                Utils::log("Unknown message!",msgId);
+                break;
+        }
+    }
+    else
+    {
+        Utils::log("something went wrong with the message");
+    }
 }
 
 void MutexRc::init()
@@ -38,6 +60,35 @@ void MutexRc::request()
             needsKeys=true;
             rNode.sendTo(it.first,getCtrlStr(REQUEST));
         }
+    }
+
+    if(!needsKeys)
+    {
+        tryEnterCs();
+    }
+}
+void MutexRc::handleRequest(int uid,int ts)
+{
+Utils::log("handling request");
+}
+
+void MutexRc::tryEnterCs()
+{
+    bool canEnter = true;
+    for(auto it : mKeys)
+    {
+        if(!it.second)
+        {
+            canEnter = false;
+        }
+    }
+
+    if(canEnter)
+    {
+        Utils::log("ENTER CS");
+        //wait time
+        Utils::log("EXIT CS");
+        //release keys
     }
 }
 

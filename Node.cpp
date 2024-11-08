@@ -200,7 +200,7 @@ void Node::releaseMessages()
     }
 }
 
-void Node::listenToNeighbors()
+/*void Node::listenToNeighbors()
 {
     while(!finishedAlg )
     {
@@ -210,6 +210,16 @@ void Node::listenToNeighbors()
             {
                 recvMsg(fd); 
             }
+        }
+    }
+}*/
+void Node::listenToNeighbors()
+{
+    while(!finishedAlg )
+    {
+        if(Utils::pollForFd(mListenFd,1,POLLIN) > 0)
+        {
+            recvMsg(mListenFd); 
         }
     }
 }

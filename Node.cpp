@@ -97,6 +97,15 @@ void Node::openSocket()
         Utils::log("coudn't set socket option PEER_ADDR_PARAMS: " , strerror(errno));
         return;
     }
+    struct sctp_event_subscribe events;
+    memset(&events, 0, sizeof(events));
+    events.sctp_data_io_event = 1;  // Enable data IO event
+    ret = setsockopt(mListenFd, IPPROTO_SCTP, SCTP_EVENTS, &events, sizeof(events));
+    if (ret < 0) 
+    {
+        Utils::log("Couldn't set SCTP events: ", strerror(errno));
+        return;
+    }
 
     int bufferSize = 1536000;  // 500 KB
 

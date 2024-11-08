@@ -98,16 +98,15 @@ void Node::openSocket()
         return;
     }
 
-    int sendBufferSize = 512000;  // 500 KB
-    int receiveBufferSize = 512000;  // 500 KB
+    int bufferSize = 1024000;  // 500 KB
 
-    if (setsockopt(mListenFd, SOL_SOCKET, SO_SNDBUF, &sendBufferSize, sizeof(sendBufferSize)) == -1) 
+    if (setsockopt(mListenFd, SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(sendBufferSize)) == -1) 
     {
         Utils::log("coudn't set socket option SO_SNDBUF: " , strerror(errno));
         return;
     }
 
-    if (setsockopt(mListenFd, SOL_SOCKET, SO_RCVBUF, &receiveBufferSize, sizeof(receiveBufferSize)) == -1) 
+    if (setsockopt(mListenFd, SOL_SOCKET, SO_RCVBUF, &bufferSize, sizeof(receiveBufferSize)) == -1) 
     {
         Utils::log("coudn't set socket option SO_RCVBUF: " , strerror(errno));
         return;

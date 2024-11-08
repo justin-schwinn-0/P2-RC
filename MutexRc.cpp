@@ -24,6 +24,7 @@ void MutexRc::handleMsg(std::string msg)
 
 void MutexRc::init()
 {
+    request();
 }
 
 void MutexRc::request()

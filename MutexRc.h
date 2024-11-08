@@ -37,6 +37,8 @@ private:
 
     int mRequestTime = -1;
 
+    std::map<int, bool> mOtherRequests;
+
 };
 
 #endif

@@ -9,6 +9,7 @@ MutexRc::MutexRc(NodeInfo& ni):
     {
         //Lower UID gets the key
         mKeys[uid] = rNode.getUid() < uid;
+        mOtherRequests[uid] = false;
     }
 }
 
@@ -76,9 +77,16 @@ void MutexRc::handleRequest(int uid,int ts)
     {
         Utils::log("Other Request has priority");
     }
-    else if( ts == mRequestTime && uid < rNode.getUid())
+    else if( ts == mRequestTime )
     {
-        Utils::log("Will defer");
+        if(uid < rNode.getUid())
+        {
+            Utils::log("tie break: lost");
+        }
+        else
+        {
+            Utils::log("tie break: won");
+        }
     }
     else
     {

@@ -74,9 +74,21 @@ void MutexRc::request()
     }
     mTime++;
 }
+
+void MutexRc::giveKey(int uid)
+{
+    mKeys[uid] = false;
+    rNode.sendTo(uid,getCtrlStr(GIVE));
+}
+
 void MutexRc::handleRequest(int uid,int ts)
 {
     Utils::log("handling request",mRequestTime);
+    if(!hasRequest())
+    {
+        giveKey(uid);
+        return;
+    }
     
     if(ts < mRequestTime)
     {

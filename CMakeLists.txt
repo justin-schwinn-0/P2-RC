@@ -11,12 +11,14 @@ set(Sources
     Node.cpp
     Connection.cpp
     Utils.cpp
+    MutexRc.cpp
 )
 
 set(Headers
     Node.h
     Connection.h
     Utils.h
+    MutexRc.h
 )
 
 find_library(SCTP_LIB libsctp.so)

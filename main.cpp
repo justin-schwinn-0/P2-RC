@@ -152,12 +152,12 @@ NodeInfo readConfig(std::string configFile, int popId = -1)
 
 void runAlg(NodeInfo& ni)
 {
-    /*ni.n.print();
+    ni.n.print();
     ni.n.openSocket();
 
-    Snapshotter s(ni);
+    MutexRC mrc;
 
-    ni.n.setHandler(std::bind(&Snapshotter::handleMsg,&s,std::placeholders::_1));
+    ni.n.setHandler(std::bind(,&,std::placeholders::_1));
 
     ni.n.connectAll();
 
@@ -171,7 +171,7 @@ void runAlg(NodeInfo& ni)
     std::thread releaseThrd(&Node::releaseMessagesThread, &ni.n,250);
     releaseThrd.detach();
 
-    ni.n.listenToNeighbors();*/
+    ni.n.listenToNeighbors();
 }
 
 int main(int argc,char** argv)

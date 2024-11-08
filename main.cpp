@@ -164,6 +164,7 @@ void runAlg(NodeInfo& ni)
 
     //ni.n.acceptNeighbors();
     connectThrd.join();
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     if(ni.n.getUid() == 0)
     {

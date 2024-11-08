@@ -158,7 +158,7 @@ void runAlg(NodeInfo& ni)
 
     MutexRc mrc(ni);
 
-    ni.n.setHandler(std::bind(&MutexRc::handleMessage,mrc,std::placeholders::_1));
+    ni.n.setHandler(std::bind(&MutexRc::handleMsg,mrc,std::placeholders::_1));
 
     ni.n.connectAll();
 
@@ -166,7 +166,7 @@ void runAlg(NodeInfo& ni)
 
     if(ni.n.getUid() == 0)
     {
-        s.init();
+        mrc.init();
     }
 
     std::thread releaseThrd(&Node::releaseMessagesThread, &ni.n,250);

@@ -101,15 +101,15 @@ void Node::openSocket()
     int sendBufferSize = 512000;  // 500 KB
     int receiveBufferSize = 512000;  // 500 KB
 
-    if (setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, &sendBufferSize, sizeof(sendBufferSize)) == -1) 
+    if (setsockopt(mListenFd, SOL_SOCKET, SO_SNDBUF, &sendBufferSize, sizeof(sendBufferSize)) == -1) 
     {
-        Utils::log("coudn't set socket option PEER_ADDR_PARAMS: " , strerror(errno));
+        Utils::log("coudn't set socket option SO_SNDBUF: " , strerror(errno));
         return;
     }
 
-    if (setsockopt(sockfd, SOL_SOCKET, SO_RCVBUF, &receiveBufferSize, sizeof(receiveBufferSize)) == -1) 
+    if (setsockopt(mListenFd, SOL_SOCKET, SO_RCVBUF, &receiveBufferSize, sizeof(receiveBufferSize)) == -1) 
     {
-        Utils::log("coudn't set socket option PEER_ADDR_PARAMS: " , strerror(errno));
+        Utils::log("coudn't set socket option SO_RCVBUF: " , strerror(errno));
         return;
     }
 

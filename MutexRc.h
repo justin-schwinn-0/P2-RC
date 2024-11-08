@@ -35,6 +35,8 @@ private:
 
     int mTime = 0;
 
+    int mRequestTime = -1;
+
 };
 
 #endif

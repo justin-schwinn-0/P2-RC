@@ -52,6 +52,7 @@ void MutexRc::request()
 {
     Utils::printVectorPair(mKeys);
     bool needsKeys = false;
+    mRequestTime = mTime;
     for(auto it : mKeys)
     {
         if(!it.second)
@@ -69,7 +70,16 @@ void MutexRc::request()
 }
 void MutexRc::handleRequest(int uid,int ts)
 {
-Utils::log("handling request");
+    Utils::log("handling request");
+    
+    if(ts < mRequestTime)
+    {
+        Utils::log("Other Request has priority");
+    }
+    else if( ts == mRequestTime && uid < rNode.getUid())
+    {
+        Utils::log("Will defer");
+    }
 }
 
 void MutexRc::tryEnterCs()
@@ -91,6 +101,11 @@ void MutexRc::tryEnterCs()
         //release keys
         Utils::log("should release keys");
     }
+}
+
+void releaseKeys()
+{
+    Utils::log("Gives keys to who needs it");
 }
 
 std::string MutexRc::getCtrlStr(const int ctrlMsgId)

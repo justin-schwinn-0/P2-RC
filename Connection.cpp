@@ -29,6 +29,7 @@ Connection::~Connection()
 
 void Connection::sendMsgNow(std::string msg)
 {
+    Utils::log("Try send",msg); 
     if(mCon < 0)
     {
         Utils::log("we aren't connected to ",hostname);

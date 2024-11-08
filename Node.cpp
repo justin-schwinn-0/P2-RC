@@ -247,9 +247,9 @@ void Node::recvMsg(int fd)
 
     if(in > 0)
     {
-        Utils::log("flags:",flags);
+        Utils::log("                        flags:",flags);
         std::string strMsg(buf);
-        Utils::log("                           got:", strMsg);
+        Utils::log("                          got:", strMsg);
         //std::cout << "             stream : " << sndrcvinfo.sinfo_stream << std::endl;
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;

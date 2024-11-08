@@ -21,7 +21,7 @@ public:
 
     void init();
 
-    std::string getCtrlStr(int ctrlMsgId);
+    std::string getCtrlStr(const std::string& ctrlMsgId);
 
 private:
     Node& rNode;

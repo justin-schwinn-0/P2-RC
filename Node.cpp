@@ -254,6 +254,19 @@ void Node::recvMsg(int fd)
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;
         //std::cout << "             Flags: " << flags << std::endl;
+        Utils::log("Received SCTP notification");
+        struct sctp_notification *notif = (struct sctp_notification *)buf;
+        switch (notif->sn_header.sn_type) {
+            case SCTP_ASSOC_CHANGE:
+                Utils::log("Association change event");
+                break;
+            case SCTP_PEER_ADDR_CHANGE:
+                Utils::log("Peer address change event");
+                break;
+            // Handle other notification types as needed
+            default:
+                Utils::log("Other SCTP notification");
+        }
         auto splits = Utils::split(strMsg,MSG_DELIM);
         for(std::string str : splits)
         {

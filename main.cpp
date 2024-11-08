@@ -162,7 +162,7 @@ void runAlg(NodeInfo& ni)
 
     std::thread connectThrd(&Node::connectAll, &ni.n);
 
-    //ni.n.acceptNeighbors();
+    ni.n.acceptNeighbors();
     connectThrd.join();
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
@@ -173,7 +173,7 @@ void runAlg(NodeInfo& ni)
 
     mrc.request();
 
-    std::thread releaseThrd(&Node::releaseMessagesThread, &ni.n,50);
+    std::thread releaseThrd(&Node::releaseMessagesThread, &ni.n,150);
     releaseThrd.detach();
 
     ni.n.listenToNeighbors();

@@ -278,7 +278,7 @@ void Node::recvMsg(int fd)
                 break;
         }
     } else {
-        std::cout << "Received regular SCTP message of length " << int << std::endl;
+        std::cout << "Received regular SCTP message of length " << in << std::endl;
         // Process the received message as application data
     }
         auto splits = Utils::split(strMsg,MSG_DELIM);

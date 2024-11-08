@@ -177,12 +177,13 @@ void MutexRc::releaseKeys()
     Utils::log("Gives keys to who needs it");
     mRequestTime = INT_MAX;
 
-    for(auto it : mOtherRequests)
+    for(auto& it : mOtherRequests)
     {
         if(it.second)
         {
             giveKey(it.first);
         }
+        it.second=false;
     }
     requestTimer();
 }

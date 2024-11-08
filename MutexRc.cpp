@@ -103,13 +103,9 @@ void MutexRc::handleRequest(int uid,int ts)
 
     Utils::log("handle request",uid,ts,mRequestTime);
     
-    if(ts < mRequestTime)
+    if(ts < mRequestTime || (ts == mRequestTime && uid < rNode.getUid()) )
     {
-        Utils::log("Other Request has priority");
-    }
-    else if( ts == mRequestTime && uid < rNode.getUid() )
-    {
-        Utils::log("deferMyKey");
+        Utils::log("Other Request has priority, defer");
     }
     else
     {

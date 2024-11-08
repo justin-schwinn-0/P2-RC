@@ -41,6 +41,9 @@ void MutexRc::handleMsg(std::string msg)
             case GIVE:
                 handleGive(uid,timeStamp);
                 break;
+            case DEFER:
+                handleDefer(uid,timeStamp);
+                break;
             default:
                 Utils::log("Unknown message!",msgId);
                 break;
@@ -119,6 +122,7 @@ void MutexRc::handleRequest(int uid,int ts)
     if(ts < mRequestTime || (ts == mRequestTime && uid < rNode.getUid()) )
     {
         Utils::log("Other Request has priority, defer");
+        deferKey(uid);
     }
     else
     {

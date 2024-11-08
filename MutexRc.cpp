@@ -134,17 +134,17 @@ void MutexRc::handleRequest(int uid,int ts)
 
 void MutexRc::handleGive(int uid, int ts)
 {
-    Utils::log("was given key!", uid);
+    //Utils::log("was given key!", uid);
 
     mKeys[uid] = true;
-    Utils::printVectorPair(mKeys);
+    //Utils::printVectorPair(mKeys);
 
     tryEnterCs();
 }
 
 void MutexRc::handleDefer(int uid, int ts)
 {
-    Utils::log("was given key!", uid);
+    //Utils::log("was given key!", uid);
 
     mKeys[uid] = true;
     mOtherRequests[uid] = true;

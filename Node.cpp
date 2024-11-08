@@ -226,7 +226,7 @@ void Node::listenToNeighbors()
 {
     while(!finishedAlg )
     {
-        if(Utils::pollForFd(mListenFd,1,POLLIN) > 0)
+        if(Utils::pollForFd(mListenFd,10,POLLIN) > 0)
         {
             Utils::log("listen fd recv");
             recvMsg(mListenFd); 

@@ -90,6 +90,9 @@ void Connection::makeConnection()
     while(ret != 0 );
 
     mCon = sd;
+    int bufferSize = 512000; 
+    setsockopt(mCon, SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(bufferSize));
+
     Utils::log("connection with",hostname,"fd:",sd);
 }
 

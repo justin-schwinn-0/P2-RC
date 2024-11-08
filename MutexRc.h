@@ -26,6 +26,8 @@ public:
 
     void tryEnterCs();
 
+    void releaseKeys();
+
     std::string getCtrlStr(const int ctrlMsgId);
 
 private:

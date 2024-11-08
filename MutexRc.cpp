@@ -118,7 +118,7 @@ void MutexRc::tryEnterCs()
     }
 }
 
-void releaseKeys()
+void MutexRc::releaseKeys()
 {
     Utils::log("Gives keys to who needs it");
     mRequestTime = INT_MAX;

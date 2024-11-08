@@ -56,7 +56,9 @@ void MutexRc::request()
 {
     Utils::printVectorPair(mKeys);
     bool needsKeys = false;
+    Utils::log("make req",mRequestTime);
     mRequestTime = mTime;
+    Utils::log("make req",mRequestTime);
     for(auto it : mKeys)
     {
         if(!it.second)

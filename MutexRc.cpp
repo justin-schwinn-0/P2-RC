@@ -89,6 +89,8 @@ void MutexRc::handleRequest(int uid,int ts)
         giveKey(uid);
         return;
     }
+
+    Utils::log("handle request");
     
     if(ts < mRequestTime)
     {

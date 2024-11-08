@@ -21,6 +21,8 @@ public:
 
     void init();
 
+    void request();
+
     std::string getCtrlStr(const std::string& ctrlMsgId);
 
 private:

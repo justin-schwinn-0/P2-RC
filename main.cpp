@@ -122,10 +122,10 @@ NodeInfo readConfig(std::string configFile, int popId = -1)
              INT_MAX});
     }*/
 
-    for(auto& n : nodes)
+    /*for(auto& n : nodes)
     {
         n.print();
-    }
+    }*/
     if(popId != -1)
     {
         for(auto n : nodes)

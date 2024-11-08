@@ -77,6 +77,7 @@ void MutexRc::request()
         tryEnterCs();
     }
     mTime++;
+    mTotalRequests++;
 }
 
 void MutexRc::giveKey(int uid)

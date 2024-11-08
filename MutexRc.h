@@ -50,6 +50,8 @@ private:
     int mRequestTime = INT_MAX;
 
     std::map<int, bool> mOtherRequests;
+
+    int mTotalRequests = 0;
 };
 
 #endif

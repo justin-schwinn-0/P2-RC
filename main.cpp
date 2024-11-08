@@ -158,7 +158,7 @@ void runAlg(NodeInfo& ni)
 
     MutexRc mrc;
 
-    ni.n.setHandler(std::bind(,&,std::placeholders::_1));
+    ni.n.setHandler(std::bind(&MutexRc::handleMessage,mrc,std::placeholders::_1));
 
     ni.n.connectAll();
 

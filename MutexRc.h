@@ -25,6 +25,9 @@ public:
     void request();
     void handleRequest(int uid,int ts);
 
+    void giveKey(int uid);
+    void handleGive(int uid, int ts);
+
     void tryEnterCs();
 
     void releaseKeys();

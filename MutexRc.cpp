@@ -153,9 +153,11 @@ void MutexRc::requestTimer()
         request();
     };
 
-    std::thread timerThrd(timerLambda);
-    timerThrd.detach();
-    
+    if(mTotalRequests < rNi.totalRequests)
+    {
+        std::thread timerThrd(timerLambda);
+        timerThrd.detach();
+    }
 }
 
 std::string MutexRc::getCtrlStr(const int ctrlMsgId)

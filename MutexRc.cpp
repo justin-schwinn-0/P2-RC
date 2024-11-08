@@ -92,7 +92,8 @@ void MutexRc::giveKey(int uid)
     }
     else
     {
-        Utils::log("Cannot give key we dont have!");
+        Utils::log("Cannot give key we dont have!",uid);
+        Utils::printVectorPair(mKeys);
     }
 }
 
@@ -105,7 +106,8 @@ void MutexRc::deferKey(int uid)
     }
     else
     {
-        Utils::log("Cannot defer key we dont have!");
+        Utils::log("Cannot defer key we dont have!", uid);
+        Utils::printVectorPair(mKeys);
     }
 }
 

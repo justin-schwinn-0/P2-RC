@@ -120,31 +120,28 @@ void MutexRc::handleRequest(int uid,int ts)
 
 void MutexRc::handleGive(int uid, int ts)
 {
-    //Utils::log("was given key!", uid);
+    Utils::log("was given key!", uid);
 
     mKeys[uid] = true;
+    Utils::printVectorPair(mKeys);
 
     tryEnterCs();
 }
 
 void MutexRc::tryEnterCs()
 {
-    bool canEnter = true;
     for(auto it : mKeys)
     {
         if(!it.second)
         {
-            canEnter = false;
+            return;
         }
     }
 
-    if(canEnter)
-    {
-        Utils::log("ENTER CS");
-        std::this_thread::sleep_for(std::chrono::milliseconds(rNi.execTime));
-        Utils::log("EXIT CS");
-        releaseKeys();
-    }
+    Utils::log("ENTER CS");
+    std::this_thread::sleep_for(std::chrono::milliseconds(rNi.execTime));
+    Utils::log("EXIT CS");
+    releaseKeys();
 }
 
 void MutexRc::releaseKeys()

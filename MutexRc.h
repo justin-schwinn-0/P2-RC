@@ -16,13 +16,14 @@ public:
 
     void handleMsg(std::string msg);
 
-
     void init();
 
     std::string getCtrlStr(int ctrlMsgId);
 
 private:
     Node& rNode;
+
+    std::map<int, bool> mKeys;
 
 };
 

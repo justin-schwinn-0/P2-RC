@@ -30,7 +30,7 @@ public:
     void releaseKeys();
 
     bool hasRequest()
-    {   return mRequetsTime == INT_MAX; }
+    {   return mRequestTime == INT_MAX; }
 
     std::string getCtrlStr(const int ctrlMsgId);
 

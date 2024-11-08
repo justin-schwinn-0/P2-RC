@@ -228,6 +228,7 @@ void Node::listenToNeighbors()
     {
         if(Utils::pollForFd(mListenFd,1,POLLIN) > 0)
         {
+            Utils::log("listen fd recv");
             recvMsg(mListenFd); 
         }
     }

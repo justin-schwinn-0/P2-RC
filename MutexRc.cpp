@@ -28,6 +28,8 @@ void MutexRc::handleMsg(std::string msg)
         int msgId = Utils::strToInt(splits[1]); 
         int timeStamp = Utils::strToInt(splits[2]); 
 
+        mtime = std::max(mTime+1,timeStamp);
+
         switch(msgId)
         {
             case REQUEST:
@@ -68,6 +70,7 @@ void MutexRc::request()
     {
         tryEnterCs();
     }
+    mTime++;
 }
 void MutexRc::handleRequest(int uid,int ts)
 {

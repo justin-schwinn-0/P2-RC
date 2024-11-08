@@ -76,7 +76,7 @@ void Connection::makeConnection()
     int ret;
     do
     {
-        //sleep(2);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
 
         if(ret < 0)

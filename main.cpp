@@ -12,6 +12,7 @@
 #include "Node.h"
 #include "Connection.h"
 #include "Utils.h"
+#include "MutexRc.h"
 
 NodeInfo readConfig(std::string configFile, int popId = -1)
 {
@@ -155,7 +156,7 @@ void runAlg(NodeInfo& ni)
     ni.n.print();
     ni.n.openSocket();
 
-    MutexRC mrc;
+    MutexRc mrc;
 
     ni.n.setHandler(std::bind(,&,std::placeholders::_1));
 

@@ -10,6 +10,7 @@ MutexRc::MutexRc(NodeInfo& ni):
         //Lower UID gets the key
         mKeys[uid] = rNode.getUid() < uid;
     }
+    Utils::printVectorPair(mKeys);
 }
 
 MutexRc::~MutexRc()
@@ -23,8 +24,6 @@ void MutexRc::handleMsg(std::string msg)
 
 void MutexRc::init()
 {
-    Utils::printVectorPair(mKeys);
-
 }
 
 std::string MutexRc::getCtrlStr(int ctrlMsgId)

@@ -66,7 +66,7 @@ void Node::openSocket()
         return;
     }
 
-    int maxBurst = 10;  
+    int maxBurst = 100;  
     ret = setsockopt(mListenFd, IPPROTO_SCTP, SCTP_MAX_BURST, &maxBurst,sizeof(maxBurst));
     if(ret < 0)
     {

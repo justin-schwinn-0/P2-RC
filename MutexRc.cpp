@@ -53,6 +53,7 @@ void MutexRc::handleMsg(std::string msg)
     {
         Utils::log("something went wrong with the message");
     }
+    Utils::printVectorPair(mKeys);
 }
 
 void MutexRc::init()
@@ -93,7 +94,6 @@ void MutexRc::giveKey(int uid)
     else
     {
         Utils::log("Cannot give key we dont have!",uid);
-        Utils::printVectorPair(mKeys);
     }
 }
 
@@ -107,7 +107,6 @@ void MutexRc::deferKey(int uid)
     else
     {
         Utils::log("Cannot defer key we dont have!", uid);
-        Utils::printVectorPair(mKeys);
     }
 }
 
@@ -148,7 +147,6 @@ void MutexRc::handleDefer(int uid, int ts)
     Utils::log("was given key!", uid);
 
     mKeys[uid] = true;
-    Utils::printVectorPair(mKeys);
     mOtherRequests[uid] = true;
 
     tryEnterCs();
@@ -182,7 +180,6 @@ void MutexRc::releaseKeys()
             giveKey(it.first);
         }
     }
-    Utils::printVectorPair(mKeys);
     requestTimer();
 }
 

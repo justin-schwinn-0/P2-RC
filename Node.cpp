@@ -98,7 +98,7 @@ void Node::openSocket()
         return;
     }
 
-    int bufferSize = 1024000;  // 500 KB
+    int bufferSize = 1536000;  // 500 KB
 
     if (setsockopt(mListenFd, SOL_SOCKET, SO_SNDBUF, &bufferSize, sizeof(bufferSize)) == -1) 
     {

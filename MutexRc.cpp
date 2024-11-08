@@ -59,7 +59,7 @@ void MutexRc::init()
 
 void MutexRc::request()
 {
-    Utils::printVectorPair(mKeys);
+    //Utils::printVectorPair(mKeys);
     bool needsKeys = false;
     mRequestTime = mTime;
     for(auto it : mKeys)
@@ -82,8 +82,15 @@ void MutexRc::request()
 
 void MutexRc::giveKey(int uid)
 {
-    mKeys[uid] = false;
-    rNode.sendTo(uid,getCtrlStr(GIVE));
+    if(mKeys[uid])
+    {
+        mKeys[uid] = false;
+        rNode.sendTo(uid,getCtrlStr(GIVE));
+    }
+    else
+    {
+        Utils::log("Cannot give key we dont have!");
+    }
 }
 
 void MutexRc::handleRequest(int uid,int ts)
@@ -107,6 +114,7 @@ void MutexRc::handleRequest(int uid,int ts)
     else
     {
         Utils::log("keep my key");
+        mOtherRequests[uid] = true;
     }
 }
 
@@ -143,6 +151,14 @@ void MutexRc::releaseKeys()
 {
     Utils::log("Gives keys to who needs it");
     mRequestTime = INT_MAX;
+
+    for(auto it : mOtherRequests)
+    {
+        if(it.second)
+        {
+            giveKey(uid);
+        }
+    }
     requestTimer();
 }
 

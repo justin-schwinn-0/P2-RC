@@ -1,6 +1,7 @@
 #include "MutexRc.h"
 
 #include <thread>
+#include <fstream>
 
 MutexRc::MutexRc(NodeInfo& ni):
     rNi(ni),
@@ -166,9 +167,32 @@ void MutexRc::tryEnterCs()
         }
     }
 
-    Utils::log("ENTER CS");
+    using namespace std::chrono;
+    auto clockValue = duration_cast< milliseconds >(system_clock::now().time_since_epoch()).count();
+
+    std::ofstream mutexCheckFile;
+
+    mutexCheckFile.open("mutexCheck.txt", std::ios_base::app);
+
+    std::string enterExtra = ""; 
+    std::string exitExtra = ""; 
+
+    if(mTotalRequests == 1 || mTotalRequests == 0)
+    {
+	enterExtra = std::to_string(clockValue);
+    }
+
+    mutexCheckFile << "ENTER " + std::to_string(rNode.getUid()) + " " + enterExtra+ "\n" ;
     std::this_thread::sleep_for(std::chrono::milliseconds(rNi.execTime));
-    Utils::log("EXIT CS");
+
+    if(mTotalRequests == rNi.totalRequests)
+    {
+	exitExtra = std::to_string(clockValue);
+    }
+
+    mutexCheckFile << "EXIT " + std::to_string(rNode.getUid()) +" " + exitExtra + "\n" ;
+
+    mutexCheckFile.close();
     releaseKeys();
 }
 
@@ -186,6 +210,7 @@ void MutexRc::releaseKeys()
         it.second=false;
     }
     requestTimer();
+    Utils::log("Released Keys! ==============");
 }
 
 void MutexRc::requestTimer()
@@ -197,7 +222,6 @@ void MutexRc::requestTimer()
         request();
     };
 
-    Utils::log("Released Keys! ==============");
 
     if(mTotalRequests < rNi.totalRequests)
     {
@@ -207,7 +231,6 @@ void MutexRc::requestTimer()
     else
     {
         Utils::log("Done! handled all requests! =======================");
-        
         Utils::printVectorPair(mKeys);
     }
 }

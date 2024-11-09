@@ -13,11 +13,11 @@ PROJDIR=/home/justin/Desktop/code/currentProj/
 # Directory where the config file is located on your local system
 CONFIGLOCAL=$PROJDIR/${CONFIGNAME}
 
-CONFIGDOCKER=/home/010/j/jt/jts200006/${PROG}/${CONFIGNAME}
+CONFIGDOCKER=/home/010/j/jt/jts200006/cs6378/${PROG}/${CONFIGNAME}
 
 n=0
 
-cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
+cat $CONFIGDOCKER | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
 (
     read i
     ii=$( echo $i| awk '{ print $1 }' )
@@ -34,6 +34,5 @@ cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
     done
    
 )
-
 
 echo "Cleanup complete"

@@ -6,7 +6,7 @@ netid=jts200006
 # Your main project name 
 PROG=P2-RC
 
-CONFIGNAME="${1}"
+CONFIGNAME="asyncConfig.txt"
 
 # Root directory of your project on the remote location
 PROJDIR=/home/010/j/jt/jts200006/cs6378/${PROG}
@@ -20,9 +20,10 @@ CONFIGDOCKER=/home/010/j/jt/jts200006/cs6378/${PROG}/${CONFIGNAME}
 BINDIR=$PROJDIR/build
 
 
+rm mutexCheck.txt -f
 n=0
 
-cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
+cat $CONFIGDOCKER | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
 (
     read i
     ii=$( echo $i| awk '{ print $1 }' )

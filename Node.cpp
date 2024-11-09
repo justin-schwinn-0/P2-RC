@@ -236,7 +236,7 @@ void Node::listenToNeighbors()
 
 void Node::recvMsg(int fd)
 {
-    const int bufSize = 4096;
+    const int bufSize = 1024;
     char buf[bufSize];
 
     struct sctp_sndrcvinfo sndrcvinfo;
@@ -248,7 +248,7 @@ void Node::recvMsg(int fd)
     if(in > 0)
     {
         std::string strMsg(buf);
-        //Utils::log("                          got:", strMsg);
+        //Utils::log("                           got", strMsg);
         //std::cout << "             stream : " << sndrcvinfo.sinfo_stream << std::endl;
         //std::cout << "ssn : " << sndrcvinfo.sinfo_ssn << std::endl;
         //std::cout << "PPID: " << sndrcvinfo.sinfo_ppid << std::endl;

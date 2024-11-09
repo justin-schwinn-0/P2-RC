@@ -45,6 +45,14 @@ int Utils::strToInt(std::string s)
     return ret;
 }
 
+uint64_t Utils::strToULong(std::string s)
+{
+    std::istringstream intss(s);
+    uint64_t ret;
+    intss >> ret;
+    return ret;
+}
+
 std::string Utils::getAddressFromHost(std::string host)
 {
     struct addrinfo *result;
